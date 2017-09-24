@@ -16,5 +16,11 @@ lazy val root = (project in file(".")).settings(
     "-language:postfixOps",
     "-Yrangepos",
     "-Yrepl-sync"
+  ),
+  libraryDependencies ++= Seq(
+    squants
+  ),
+  libraryDependencies ++= Seq(
+    specs2 % Test
   )
 )
