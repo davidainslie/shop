@@ -7,10 +7,15 @@ case class ShoppingCart(items: Seq[Item] = Nil)
 object ShoppingCart {
   def apply(item: Item) = new ShoppingCart(Seq(item))
 
-  def price(shoppingCart: ShoppingCart): Money =
-    shoppingCart.items.foldLeft(GBP(0.00)) { (acc, item) =>
+  def price(shoppingCart: ShoppingCart, discounts: (ShoppingCart => Discount)*): Money = {
+    val price = (GBP(0.00) /: shoppingCart.items) { (acc, item) =>
       acc + item.price
     }
+
+    (price /: discounts) { (price, discount) =>
+      price - discount(shoppingCart).price
+    }
+  }
 
   implicit class IntMoney(quantity: Int) {
     def *(money: Money): Money = (money * quantity) rounded 2
