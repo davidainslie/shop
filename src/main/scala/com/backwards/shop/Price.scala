@@ -16,4 +16,8 @@ object Price {
 
   def apply(value: BigDecimal): Price =
     new Price(value.setScale(precision, BigDecimal.RoundingMode.HALF_UP))
+
+  implicit class PriceOps(price: Price) {
+    def *(n: Double) = Price(price.value * n)
+  }
 }
