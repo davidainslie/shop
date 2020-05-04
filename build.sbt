@@ -3,8 +3,8 @@ import Dependencies._
 lazy val root = (project in file(".")).settings(
   inThisBuild(List(
     organization := "com.backwards",
-    scalaVersion := "2.12.3",
-    version      := "0.2.1-SNAPSHOT"
+    scalaVersion := "2.13.2",
+    version      := "0.3.0-SNAPSHOT"
   )),
   name := "shop",
   scalacOptions ++= Seq(
@@ -14,8 +14,7 @@ lazy val root = (project in file(".")).settings(
     "-language:existentials",
     "-language:reflectiveCalls",
     "-language:postfixOps",
-    "-Yrangepos",
-    "-Yrepl-sync"
+    "-Yrangepos"
   ),
   libraryDependencies ++= Seq(
     squants
